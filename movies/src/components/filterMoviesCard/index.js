@@ -1,4 +1,3 @@
-import React from "react";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
@@ -11,9 +10,6 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import img from '../../images/pexels-dziana-hasanbekava-5480827.jpg'
 import React, {useState, useEffect}  from "react";
-
-
-
 const formControl = 
   {
     margin: 1,
@@ -23,36 +19,36 @@ const formControl =
 
 export default function FilterMoviesCard(props) {
 
-    const [genres, setGenres] = useState([{ id: '0', name: "All" }])
+const [genres, setGenres] = useState([{ id: '0', name: "All"}])
 
-    useEffect(() => {
-        fetch(
-          "https://api.themoviedb.org/3/genre/movie/list?api_key=" +
-            process.env.REACT_APP_TMDB_KEY
-        )
-          .then(res => res.json())
-          .then(json => {
-            // console.log(json.genres) 
-            return json.genres
-          })
-          .then(apiGenres => {
-            setGenres([genres[0], ...apiGenres]);
-          });
-          // eslint-disable-next-line
-      }, []);
-    
-      const handleChange = (e, type, value) => {
-        e.preventDefault()
-        props.onUserInput(type, value)   // NEW
-      }
-p    
-      const handleTextChange = e => {
-        handleChange(e, "name", e.target.value)
-      }
-      const handleGenreChange = e => {
-        handleChange(e, "genre", e.target.value)
-      };
-    
+useEffect(() => {
+    fetch(
+      "https://api.themoviedb.org/3/genre/movie/list?api_key=" +
+        process.env.REACT_APP_TMDB_KEY
+    )
+      .then(res => res.json())
+      .then(json => {
+        // console.log(json.genres) 
+        return json.genres
+      })
+      .then(apiGenres => {
+        setGenres([genres[0], ...apiGenres]);
+      });
+      // eslint-disable-next-line
+  }, []);
+
+  const handleChange = (e, type, value) => {
+    e.preventDefault()
+    props.onUserInput(type, value) // NEW
+  };
+  const handleTextChange = e => {
+    handleChange(e, "name", e.target.value)
+  }
+  const handleGenreChange = e => {
+    handleChange(e, "genre", e.target.value)
+  };
+
+
   return (
     <Card 
       sx={{
@@ -65,14 +61,14 @@ p
           Filter the movies.
         </Typography>
         <TextField
-      sx={{...formControl}}
-      id="filled-search"
-      label="Search field"
-      type="search"
-      variant="filled"
-      value={props.titleFilter}
-      onChange={handleTextChange}
-    />
+          sx={{...formControl}}
+          id="filled-search"
+          label="Search field"
+          type="search"
+          variant="filled"
+          value={props.titleFilter}
+          onChange={handleTextChange}
+        />
         <FormControl sx={{...formControl}}>
           <InputLabel id="genre-label">Genre</InputLabel>
           <Select

@@ -13,43 +13,43 @@ import IconButton from "@mui/material/IconButton";
 import Grid from "@mui/material/Grid2";
 import img from '../../images/film-poster-placeholder.png'
 
+
 export default function MovieCard(props) {
-  const movie = props.movie;
-  return (
-    <Card>
-      <CardHeader title={movie.title} sx={{ textWrap: "nowrap"}}/>
-      <CardMedia
-        sx={{ height: 500 }}
-        image={
-          movie.poster_path
-            ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
-            : img
-        }
-      />
-      <CardContent>
-        <Grid container>
-          <Grid size={{xs: 6}}>
-            <Typography variant="h6" component="p">
-              <CalendarIcon fontSize="small" />
-              {movie.release_date}
-            </Typography>
-          </Grid>
-          <Grid size={{xs: 6}}>
-            <Typography variant="h6" component="p">
-              <StarRateIcon fontSize="small" />
-              {"  "} {movie.vote_average}{" "}
-            </Typography>
-          </Grid>
-        </Grid>
-      </CardContent>
-      <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites" onClick={null}>
-          <FavoriteIcon color="primary" fontSize="large" />
-        </IconButton>
-        <Button variant="outlined" size="medium" color="primary">
-          More Info ...
-        </Button>
-      </CardActions>
-    </Card>
-  );
+    const movie = props.movie;
+    return(
+        <Card>
+            <CardHeader title = {movie.title} sx={{ textWrap: "nowrap"}}/>
+            <CardMedia sx={{ height: 500 }}
+            image={
+              movie.poster_path
+                ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
+                : img
+            }
+          />
+        <CardContent>
+            <Grid container>
+                <Grid size={{xs: 6}}>
+                    <Typography variant="h6" component="p">
+                        <CalendarIcon fontSize="small" />
+                        {movie.release_date}
+                    </Typography>
+                </Grid>
+                <Grid size={{xs: 6}}>
+                    <Typography variant="h6" component="p">
+                        <StarRateIcon fontSize="small" />
+                        {"  "} {movie.vote_average}{" "}
+                    </Typography>
+                </Grid>
+            </Grid>
+        </CardContent>
+        <CardActions disableSpacing>
+            <IconButton aria-label="add to favourites" onClick ={null}>
+                <FavoriteIcon color="primary" fontSize="large" />
+            </IconButton>
+            <Button variant="outlined" size="medium" color="primary">
+                More Info...
+            </Button>
+        </CardActions>
+        </Card>
+    );
 }
